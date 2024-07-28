@@ -1,0 +1,262 @@
+# Define prompts used when prompting LLM.
+system: >-
+  You are a Python programmer.
+  You have access to all Python built-in functions and libraries that are available in Python 3.10.
+  To use a function or a library, you need to import it first.
+  However, you are not allowed to use any third-party libraries except numpy, which is available as np.
+  Everything you write will be content inside a function, unless otherwise specified.
+  Do not write the function signature or any other code outside the function, unless you are explicitly asked to do so.
+  If the prompt asks you to respond with code only, you should not include any example usage nor text description in your response.
+  Write comments to describe your thinking process.
+  Your responses should strictly follow the requirements specified in the prompts.
+  You will work with a domain-specific language (DSL) for describing spatial motif of objects.
+  You will be asked to perform some tasks related to spatial motif programs written using this DSL.
+  All functions in the DSL are valid Python functions.
+  Here are the functions that exists:
+  1. create(label: str, half_size: list[float]) -> Obj: Create a new object with the given `label` and `half_size`. The `half_size` is a list of three floats representing the half of the size of the object in the x, y, and z dimensions.
+  2. move(obj: Obj, x: float, y: float, z: float) -> None: Move the object `obj` to the world coordinate (x, y, z). The object's position is the centroid of the object's bounding box.
+  3. rotate(obj: Obj, axis: str, angle: float) -> None: Rotate the object `obj` around its local axis (x, y, or z) by the given angle.
+  Units are in meters for x, y, z dimensions and degrees for angle.
+  The world is in a right-handed coordinate system, that is, when looking from the front, the x-axis is to the right, the y-axis is up, and the z-axis is towards the viewer.
+  When looking from above, the origin (0, 0, 0) is at the top-left corner of the screen, and the x-axis increases to the right, the z-axis increases towards the bottom of the screen.
+# ----------------------------------------------------------------------------------------------------
+optimize_highlevel_count: >-
+  Below is a program about a spatial motif of "<DESCRIPTION>".
+  Describe how many object types and how many are there for each type.
+  Respond with a json-like text structure with the object types as keys and the counts as values.
+  Here is the program:
+  ```python
+  <PROGRAM>
+  ```
+optimize_highlevel_general_pattern: >-
+  Can you observe any pattern in this motif of objects about "<DESCRIPTION>"? (Look for common sense things like repeating layout, symmetry, etc.)
+  Respond with a detailed description of the pattern you observed in text.
+optimize_highlevel_xyz_pattern: >-
+  Can you observe any pattern in the x, y, z coordinates of the objects in this motif?
+  Respond with a detailed description of the pattern you observed in text.
+optimize_highlevel_xyz_displacements: >-
+  Can you find the relative displacements of each object to the next object in the x, y, z dimensions?
+  Base on these displacement values, group the objects into different subgroups.
+  The goal is to disentangle the overall motif into smaller, self-contained spatial patterns.
+  Assign each object to a subgroup such that the spatial pattern in the subgroup can easily be expressed by some programming constructs.
+  Each object should belong to exactly one subgroup.
+# ----------------------------------------------------------------------------------------------------
+classify: >-
+  Based on your observations, classify the spatial motif of objects "<DESCRIPTION>" into one of the following motif types:
+  <MOTIF_INFO>
+  If the motif type is letter, concatenate the letter to the end of the motif type (e.g., letter_A, letter_B, etc.)
+  Respond with the name of the motif type only.
+# ----------------------------------------------------------------------------------------------------
+optimize_lowlevel: >-
+  Take a deep breath and follow the steps below carefully.
+  Using these observations you made, modify the original program such that the code structure represents the spatial pattern.
+  Here are the requirements for this task:
+  1. Do not create any functions
+  2. Store all created objects in a list named `objs`
+  3. The new program should represent the same scene as in the original program with the same number of objects.
+  4. The objects do not need to be in the same order as the original program, instead, opt for a more structured or natural order.
+  5. Do not list all object coordinates, rotation angles, or sizes in a list and access them in a loop using index.
+     This is not acceptable as the spatial pattern is lost.
+     Avoid doing this at all costs.
+     Use loops, arithmetic operators, if-else statements, and other programming constructs to encapsulate the patterns.
+  6. The coordinates and sizes can be slightly different from the original program, as long as the overall motif remains the same.
+  Please respond with code only.
+optimize_lowlevel_feedback_syntax: >-
+  I could not run the program you provided.
+  <FEEDBACK>
+  Please try again.
+optimize_lowlevel_feedback_naive_listing: >-
+  Your program creates an motif that accurately recreates the one in the original program.
+  However, you listed some attributes of all objects in a list and accesses them in a loop.
+  <FEEDBACK>
+  Please remove such statements and use loops, arithmetic operators, if-else statements to capture the object attribute patterns
+optimize_lowlevel_feedback_num_objs: >-
+  The number of objects in the original program does not match the number of objects in your program.
+  <FEEDBACK>
+  Please try again.
+optimize_lowlevel_feedback_centroids: >-
+  Objects in the original program are not accurately placed in your program.
+  <FEEDBACK>
+  Please try again.
+optimize_lowlevel_feedback_bounding_boxes: >-
+  Objects in the original program are not accurately created in your program.
+  <FEEDBACK>
+  The objects in your program either have incorrect dimensions or are not oriented correctly.
+  Please try again.
+validate_naive_listing: >-
+  Below is a program that describes a spatial motif of objects.
+  Please analyze the program for the following criterion:
+  The program should define and manipulate the objects and their properties without using lists of specific object attributes for individual objects.
+  It is okay to store common values in variables and reuse them (e.g., dimensions, common properties).
+  However, the program should use programming constructs and arithmetic operations (like loops or calculations) to define and manipulate the positional and orientational properties of objects, rather than explicitly listing them.
+  For example, if there are four objects, the program should not have a list of four (x, y, z) coordinates or four rotation angles for each object.
+  Exclude the `objs` list from the analysis.
+  Answer in a json format:
+  {'valid': 'yes' or 'no', 'variable_names': a list of the names of the variables that violated the criterion}
+  Briefly explain your reasoning in two to three sentences after the json-like text structure.
+  Here is the program:
+  ```python
+  <PROGRAM>
+  ```
+# ----------------------------------------------------------------------------------------------------
+generalize_high_level_commonalities: >-
+  Take a deep breath and follow the steps below carefully.
+  Here are "<NUM_PROGRAMS>" programs that describe the same type of spatial motif: "<MOTIF_TYPE>".
+  Each program may have different objects and different coordinates, but they all fall under the same type of spatial motif.
+  Here are the programs and the spatial motifs they create:
+  <ALL_PROGRAMS>
+  For each program, analyze and observe its structure and how the structure correlates with the spatial motif it creates.
+  Pay extra attention to how the objects are placed relative to each other.
+  Can you identify the commonalities among these programs?
+  If there is only one program, hypothesize what the commonalities could be if there were multiple programs of the same type.
+  For the letter motif type, only consider the commonalities among the programs that form the same letter.
+  Respond with a detailed description of the pattern you observed in text.
+generalize_high_level_differences: >-
+  What are the differences among these programs?
+  Specifically, how are the objects placed differently in each program?
+  For each program, observe and describe the differences in the program structure that lead to the different spatial motifs.
+  If there is only one program, hypothesize how the program could be written differently to create a different spatial motif of the same type.
+  Your hypothesized programs should not deviate from the concrete, non-hypothetical programs you analyzed, and should focus on the number of objects, their positions, rotations, and sizes as the main axes of variation.
+  The hypothesized programs should be close to the original program in terms of the spatial motif they create (e.g., a stack of 3 objects instead of 4, or a row of 4 objects instead of 3, etc.)
+  Respond with a detailed description of the differences of each program in text.
+  Refer to the programs by their order in the previous prompt.
+generalize_high_level_motif_reason: >-
+  Despite these differences, these programs all fall under the same type of spatial motif: "<MOTIF_TYPE>".
+  Here is a list of all available motif types:
+  <MOTIF_INFO>
+  Based on your observations, what are the reasons that these programs fall under the same type of spatial motif?
+  Also, identify the closest incorrect motif type and explain why it is not the correct motif type.
+  Respond with a detailed description of the reasons in text.
+# ----------------------------------------------------------------------------------------------------
+generalize_low_level_arguments: >-
+  With this conversation in mind, you are now tasked to write a python function (a meta-program) that can be used to create various spatial motifs of "<MOTIF_TYPE>".
+  A user should be able to call this meta-program with different arguments to create different spatial motifs of this type.
+  Using the provided programs as examples, the meta-program should be able to create any spatial motif of this type with slight variations in the number of objects and their attributes.
+  Apart from the objects in the examples, the meta-program should be able to create new spatial motifs of different object types and attributes.
+  Use your analysis on the commonalities and differences among the example programs to guide you in writing the meta-program.
+  Keep in mind that the final meta-program should be able to recreate the given example spatial motifs as closely as possible.
+  Avoid taking plain lists of object attributes, such as coordinates, sizes, and rotations, as arguments, as this defeats the purpose of using a meta-program to capture fundamental spatial patterns.
+  I will guide you through the process of writing the function step by step.
+  First, what are the arguments that the meta-program should take to create a spatial motif of this type?
+  Respond with a detailed description of the arguments in text.
+generalize_low_level_structure: >-
+  You have identified the arguments needed for the meta-program.
+  Now, think about the structure of the meta-program.
+  How should the meta-program be structured to generalize the spatial motif of "<MOTIF_TYPE>"?
+  Aim to encapsulate the commonalities and differences among the example programs in the structure of the meta-program.
+  Think about how the arguments should be used in the meta-program to create the spatial motif.
+  What programming constructs should be used to encapsulate the commonalities and differences among the example programs?
+  Respond with a detailed description of the structure of the meta-program in text.
+# ----------------------------------------------------------------------------------------------------
+generalize_low_level: >-
+  Take a deep breath and follow the steps below carefully.
+  You have identified the arguments and the structure of the meta-program.
+  Now, write the meta-program that can create various spatial motifs of "<MOTIF_TYPE>".
+  Here is a meta-program of the same motif type you created in the past:
+  ```python
+  <PAST_META_PROGRAM>
+  ```
+  You can use this as a reference to write the new meta-program, but you can also write it from scratch.
+  Refer to the arguments you identified and the structure you described to write the meta-program.
+  Remember that the meta-program should be able to recreate the spatial motifs of the example programs as closely as possible.
+  Avoid taking plain lists of object attributes, such as coordinates, sizes, and rotations, as arguments, as this defeats the purpose of using a meta-program to capture fundamental spatial patterns.
+  Include a docstring at the beginning of the meta-program to describe the purpose of the function and the arguments it takes.
+  Use comments to explain your code step by step.
+  Please respond with code only.
+generalize_low_level_batch_recreate: >-
+  Using the meta-program you wrote, what are the function calls needed to recreate each of the example programs you analyzed previously?
+  Write one function call for each example program, that recreates the spatial motif of the program as closely as possible.
+  Ignore the programs you hypothesized and only write function calls for the example programs I provided.
+  Response with a json-like text structure with the example program order integers as keys and the function calls as values.
+  For example, {"1": "function_call(program1_args)", "2": "function_call(program2_args)", ...}
+generalize_low_level_feedback: >-
+  The meta-program you wrote could not recreate the spatial motif of the example programs as closely as possible.
+  Here are the feedback(s) for the example program(s) that were not recreated accurately:
+  <FEEDBACK>
+  The issue(s) may be related to the meta-program structure or the arguments used in the function calls.
+  Please analyze the feedback and modify the meta-program if necessary.
+  Remember that the meta-program should be able to recreate the spatial motifs of the example programs as closely as possible.
+  Also, remember to edit the docstring and comments in the meta-program to reflect the changes you made.
+  Then, respond with the code of the modified meta-program only.
+  If you think the meta-program is correct, and the function calls are incorrect, then you can respond with the same meta-program code.
+  I will ask you to provide the function calls again after this where you can correct the function calls.
+generalize_refine_comments: >-
+  You have successfully written the meta-program to generalize the spatial motif of "<MOTIF_TYPE>".
+  The latest function calls you provided are able to recreate the spatial motifs of the example programs.
+  Please update the docstring and comments in the meta-program to provide as much information as possible about the expected arguments.
+  If the program contains well-defined parts that can be explained, include comments to describe these parts - how they contribute to the spatial motif and how they differ from other parts.
+  At inference time, the meta-program will be the sole source of information for recreating this spatial motif.
+  Therefore, these comments will be crucial for understanding how the meta-program should be used.
+  Include at least one example function call in the comments to show how the meta-program should be called.
+  Please respond with code only.
+# ----------------------------------------------------------------------------------------------------
+inference: >-
+  Here is a meta-program that generalizes a spatial arrangement of type "<MOTIF_TYPE>":
+  ```python
+  <META_PROGRAM>
+  ```
+  And here is a description of a spatial motif of the same type:
+  <DESCRIPTION>
+  Your task is to call the meta-program with the necessary arguments to recreate the spatial motif described in the description as closely as possible.
+  Read the docstring and comments in the meta-program to understand how to use it.
+  Refer to the example function call in the meta-program documentation to understand how the meta-program should be called, if available.
+  Use common sense to infer the arguments for ambiguous arguments, such as object dimensions, positions, and rotations.
+  When in doubt, refer back to the example function call in the meta-program documentation.
+  Ensure the arguments make the new spatial motif physically possible without intersecting or floating objects and make the objects contact tightly, if applicable.
+  I will run a postprocessing step to refine the spatial motif after you provide the function call to me.
+  Remember that x, y, z dimensions are in meters and rotation angles are in degrees.
+  +x is to the right, +y is up, and +z is front (towards the viewer).
+  Most object rotations hence are around the y-axis, as it is the vertical axis.
+  Assume the objects are large so make sure they are spaced out enough to not intersect.
+  When placing objects, consider how human would organize them in real life.
+  For example, large objects are usually placed at the bottom and smaller objects on top.
+  Please respond with code - the function call with the inferred arguments only.
+inference_feedback: >-
+  I could not run the meta-program using the function call you provided.
+  <FEEDBACK>
+  Please try again.
+# ----------------------------------------------------------------------------------------------------
+retrieval_mesh_rotations: >-
+  I am retrieving meshes of objects from a human-authored object dataset to instantiate a spatial motif of "<DESCRIPTION>".
+  The labels of the objects are "<OBJECT_LABELS>".
+  How likely would be the retrieved mesh in the correct orientation?
+  Use common sense knowledge to reason about this.
+  Consider whether the objects are commonly oriented in both upright and sideways positions in real life.
+  If there are multiple common orientations, then the retrieved mesh is likely to be in the incorrect orientation.
+  Respond in a json-like text structure with the object labels as keys and two probabilities ("correct", "incorrect") as values l
+  ```json
+  {"obj1": {"correct": X, "incorrect": 1-X}, "obj2": ...}
+  ```
+  where X is between 0 and 1.
+  The two probabilities "correct", "incorrect" indicate how likely the retrieved mesh would be in the correct orientation for the motif.
+  For objects that are hanged on a wall, always consider the mesh would be in the incorrect orientation.
+  Include a brief two to three sentences explanation for each object after the json-like text structure.
+spatial_optimization_touch: >-
+  I have instantiated a spatial motif of "<DESCRIPTION>" using meshes retrieved from a human-authored object dataset.
+  How common is it for the individual objects to be placed in tight contact with each other in this motif?
+  Consider whether this motif describes a decorative arrangement or a functional arrangement.
+  A decorative arrangement is one that is intentionally designed to be arranged in a specific way for aesthetic purposes.
+  If the motif is a decorative arrangement, then touching is less common.
+  Otherwise, use common sense to reason about whether the objects are typically placed in tight contact with each other in real life.
+  Answer using percentage to indicate how common each version is.
+  Answer in a json-like text structure with two probabilities like below:
+  ```json
+  {"touch": X, "no_touch": 1-X}
+  ```
+  where X, between 0 and 1, is the probability of the version fitting the common sense definition.
+  Briefly explain your reasoning in two to three sentences after the json-like text structure.
+# ----------------------------------------------------------------------------------------------------
+wnsynsetkeys: >-
+  Here is a list of wordnet synset keys.
+  <WNSYNSETKEYS>
+  What is the best key for the following object labels?
+  <OBJECT_LABELS>
+  Response with a json-like list of synset keys in the same order as the object labels like below:
+  ```json
+  {"wnsynsetkeys": ["key1", "key2", "key3"]}
+  ```
+  Use "none" if none of the keys are suitable for an object.
+# ----------------------------------------------------------------------------------------------------
+invalid_response: >-
+  <FEEDBACK>
+  Please try again.

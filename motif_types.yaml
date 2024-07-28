@@ -1,0 +1,14 @@
+types:
+  stack: multiple objects of the same type are placed orderly on top of each other
+  pile: objects are placed on top of each other but not in an orderly manner (when in doubt between stack and pile, choose pile if the description contains the word "pile" explicitly)
+  row: objects are placed next to each other in a row
+  grid: objects are placed orderly in a grid, like a chessboard
+  left_of: one object placed to the left of another object
+  in_front_of: one object placed in front of another object
+  on_top: one object placed on top of another object
+  surround: objects are placed around a central object in a circular manner
+  wall_vertical_column: objects are placed in a column from top to bottom vertically on a wall
+  wall_horizontal_row: objects are placed in a row from left to right vertically on a wall
+  wall_grid: objects are placed in a grid orderly and vertically on a wall (when in doubt between grid and wall_grid, choose wall_grid if the objects are placed on a wall)
+  letter: objects are placed to form a letter of the alphabet
+  rectangular_perimeter: objects are placed around the perimeter of a rectangular shape, facing inward

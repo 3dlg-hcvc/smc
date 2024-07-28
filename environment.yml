@@ -1,0 +1,20 @@
+name: smc
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - numpy<2
+  - scipy
+  - pyyaml
+  - openai=1.12
+  - python-dotenv
+  - trimesh
+  - rtree
+  - pyglet
+  - pillow
+  - pip:
+    - pygltflib==1.16.1
+    - pyembree
+    - python-fcl
