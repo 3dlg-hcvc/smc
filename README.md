@@ -37,7 +37,7 @@ cd smc
 git lfs install
 git clone https://huggingface.co/datasets/hssd/hssd-models
 ```
-Lastly, download the asset metadata `.csv` fle [here](https://huggingface.co/datasets/hssd/hssd-hab/blob/main/semantics/objects.csv) and place it inside the `hssd-models` directory.
+Lastly, download the asset metadata `.csv` file [here](https://huggingface.co/datasets/hssd/hssd-hab/tree/main/semantics) and place it inside the `hssd-models` directory.
 
 ### Directory Structure
 You should now have the following directory structure:
