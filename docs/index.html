@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="SceneMotifCoder: Example-driven Visual Program Learning for Generating 3D Object Arrangements">
+  <meta name="keywords" content="SMC, SceneMotifCoder, example-driven, visual program, generation, 3D, object, object arrangements">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>SceneMotifCoder: Example-driven Visual Program Learning for Generating 3D Object Arrangements</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FVDFJ40CY5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-FVDFJ40CY5');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-widescreen">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-2 publication-title">
+              SceneMotifCoder: Example-driven <br> Visual Program Learning for Generating <br> 3D Object Arrangements
+            </h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://iv-t.github.io/">Hou In Ivan Tam</a>,</span>
+              <span class="author-block">
+                <a href="https://houip.github.io/portfolio/">Hou In Derek Pun</a>,</span>
+              <span class="author-block">
+                <a href="https://atwang16.github.io/">Austin T. Wang</a>,</span>
+              <span class="author-block">
+                  <a href="https://angelxuanchang.github.io/">Angel X. Chang</a>,</span>
+              <span class="author-block">
+                <a href="https://msavva.github.io/">Manolis Savva</a>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Simon Fraser University</span>
+            </div>
+            <!-- <div class="is-size-5 publication-authors">
+              <span class="author-block" style="color:#a771ac">VENUE</span>
+            </div> -->
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <!-- <span class="link-block">
+                  <a href=""
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span> -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <!-- Video Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Video</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <!-- Dataset Link. -->
+                <span class="link-block">
+                <a href="" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-widescreen">
+      <!-- Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <!-- <h2 class="title is-3">Video</h2> -->
+          <div class="publication-video">
+            <iframe src="https://www.youtube.com/embed/" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+      <!--/ Paper video. -->
+    </div>  
+  </section>
+
+  <section class="section">
+    <div class="container is-max-widescreen">
+      <div class="columns is-centered">
+
+        <!-- Abstract. --> 
+        <div class="column is-full-width is-large">
+          <div class="column has-text-centered">
+
+            <div class="center-container" style="margin-left: -10px">
+              <!-- <h2 class="title is-3">Abstract</h2> -->
+              <video autoplay playsinline muted loop controls>
+                <source src="./static/images/teaser.mov">
+              </video>
+            </div>
+
+            <div class="content has-text-justified mt-4">
+              <p>
+                Despite recent advances in text-to-3D generation methods, generation of multi-object arrangements remains challenging. 
+                Current methods exhibit failures in generating physically plausible arrangements that respect the provided text description.
+              </p>
+              <p>
+                We present SceneMotifCoder (SMC), an example-driven framework for generating 3D object arrangements through visual program learning. 
+                SMC leverages recent advances in large language models (LLMs) and program synthesis to overcome these challenges by learning visual programs from example arrangements. 
+                These programs are generalized into compact, editable meta-programs. When combined with 3D object retrieval and geometry-aware optimization, 
+                they can be used to create object arrangements varying in arrangement structure and contained objects.
+              </p>
+              <p>
+                Our experiments show that SMC generates high-quality arrangements using meta-programs learned from few examples. 
+                Evaluation results demonstrate that object arrangements generated by SMC better conform to user-specified text descriptions and are more physically plausible when compared with state-of-the-art text-to-3D generation methods.
+              </p>
+            </div>
+
+          </div>
+        </div>
+        <!--/ Abstract. -->
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-widescreen">
+      <!-- Methods. -->
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <div class="content has-text-justified">
+            <div class="center-container">
+              <h3 class="title is-3">Method Overview</h3>
+            </div>
+            <p>
+              The SceneMotifCoder (SMC) framework operates in two phases.
+              <b>Top</b>: In the learning phase, given an object arrangement and its text description, SMC extracts a naïve program which is refined into a more structured motif program.
+              The spatial patterns in the motif are then abstracted into a meta-program with reusable arguments to enable editing and generalization.
+              <b>Bottom</b>: In the inference phase, given a text description as input, SMC selects a meta-program from the program library.
+              Then, a new object arrangement is generated by writing a function call that executes the meta-program with appropriate arguments.
+              Mesh retrieval and geometry-aware optimization then produces the final output which is a new object arrangement conforming to the input description.
+            </p>
+            <video autoplay playsinline muted loop controls>
+              <source src="./static/images/method.mov">
+            </video>
+          </div>
+        </div> 
+      </div>  
+    </div> 
+    <!--/ Methods. -->
+  </section>
+
+  <section class="section">
+    <!-- Results. -->
+    <div class="container is-max-widescreen">
+      <div class="center-container">
+
+        <h3 class="title is-3">Results</h3>
+
+
+
+        <div class="content has-text-justified">
+          <h4 class="title is-4">Learned Meta-Program Example</h4>
+          <p>
+            Example of meta-program for <i>surround</i> motif learned from the text and arrangement pair in blue box. 
+            The arrangements at the bottom are generated from the meta-program given the input text shown above each arrangement.
+            Note the significant variations in object counts and types, all captured by human-interpretable and editable calls to the meta-program.
+          </p>
+        </div>
+        <video autoplay playsinline muted loop controls>
+          <source src="./static/images/program.mov">
+        </video>
+
+
+
+        <div class="content has-text-justified">
+          <h4 class="title is-4 mt-6">Comparison with Prior Work</h4>
+          <p>
+            The text at each row on the left is the input at inference time.
+            The arrangements generated by SceneMotifCoder better respect the input text in terms of number and type of objects present, and exhibit more plausible spatial configurations and object appearance.
+          </p>
+        </div>
+
+        <div class="rows is-vcentered is-mobile" style="margin-bottom: 0px;">
+          <div class="row">
+            <div class="columns is-mobile has-text-centered">
+              <div class="column"><p></p></div>
+              <div class="column is-size-7-mobile"><p>MVDream<br>[Shi et al. 2023]</p></div>
+              <div class="column is-size-7-mobile"><p>GraphDreamer<br>[Gao et al. 2024]</p></div>
+              <div class="column is-size-7-mobile"><p>LayoutPrompter<br>[Lin et al. 2024]</p></div>
+              <div class="column is-size-7-mobile" style="font-size: large;"><p><b>Ours</b></p></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="columns is-mobile">
+              <div class="column is-one-fifth is-flex is-justify-content-center	is-align-items-center">
+                <p class="is-size-4-desktop is-size-6-mobile" style="font-family: Perpetua;">A wineglass left of a wine bottle</p>
+              </div>
+              <div class="column">
+                <video autoplay playsinline muted loop controls>
+                  <source src="./static/images/compare1.mov" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="columns is-mobile">
+              <div class="column is-one-fifth is-flex is-justify-content-center	is-align-items-center">
+                <p class="is-size-4-desktop is-size-6-mobile" style="font-family: Perpetua;">Three plates circularly surrounding a large bowl</p>
+              </div>
+              <div class="column">
+                <video autoplay playsinline muted loop controls>
+                  <source src="./static/images/compare2.mov" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="columns is-mobile">
+              <div class="column is-one-fifth is-flex is-justify-content-center	is-align-items-center">
+                <p class="is-size-4-desktop is-size-6-mobile" style="font-family: Perpetua;">A stack of three bowls</p>
+              </div>
+              <div class="column">
+                <video autoplay playsinline muted loop controls>
+                  <source src="./static/images/compare3.mov" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="columns is-mobile">
+              <div class="column is-one-fifth is-flex is-justify-content-center	is-align-items-center">
+                <p class="is-size-4-desktop is-size-6-mobile" style="font-family: Perpetua;">A pile of three towels</p>
+              </div>
+              <div class="column">
+                <video autoplay playsinline muted loop controls>
+                  <source src="./static/images/compare4.mov" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="columns is-mobile">
+              <div class="column is-one-fifth is-flex is-justify-content-center	is-align-items-center">
+                <p class="is-size-4-desktop is-size-6-mobile" style="font-family: Perpetua;">A cup in front of a coffee maker</p>
+              </div>
+              <div class="column">
+                <video autoplay playsinline muted loop controls>
+                  <source src="./static/images/compare5.mov" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="columns is-mobile">
+              <div class="column is-one-fifth is-flex is-justify-content-center	is-align-items-center">
+                <p class="is-size-4-desktop is-size-6-mobile" style="font-family: Perpetua;">A rectangle grid of four potted plants</p>
+              </div>
+              <div class="column">
+                <video autoplay playsinline muted loop controls>
+                  <source src="./static/images/compare6.mov" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="content has-text-justified">
+          <h4 class="title is-4 mt-6">Diverse Generation Results</h4>
+          <p>
+            Our SceneMotifCoder framework generalizes the motifs exhibited by input examples to produce diverse arrangements with differing object categories, object counts, and spatial configurations.
+          </p>
+        </div>
+        <video autoplay playsinline muted loop controls>
+          <source src="./static/images/results.mov">
+        </video>
+
+      </div>
+    </div>
+    <!--/ Results. -->
+  </section>
+
+  <section class="section">
+    <div class="container is-max-widescreen">
+      <!-- Applications. -->
+      <div class="center-container">
+
+        <h3 class="title is-3">Applications</h3>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-4">Populating Scene</h4>
+          <p>
+            We populate an indoor scene with dense, realistic object arrangements by instantiating a variety of learned motifs.
+            The dining table shown here is populated by instantiating arrangements from six motif types.
+            Note that the small object arrangements are essential for conveying specific scene states — e.g., a birthday party
+          </p>
+          <img src="./static/images/application_scene.png">
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-4 mt-6">Meta-Program Editing</h4>
+          <p>
+            We edit a learned <i>stack</i> motif meta-program to introduce an additional object category at the top of the stack.
+            The edited meta-program preserves the generality of the original while adapting the motif with a user modification.
+            On the right is a generated arrangement of <i>"a stack of three plates and a cup"</i> using this edited meta-program.
+          </p>
+          <img class="pl-6 pr-6" src="./static/images/application_edit.png">
+        </div>
+
+      </div>
+      <!--/ Applications. -->
+    </div>
+  </section>
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>
+      @article{??????????,
+          author        = {Tam, Hou In Ivan and Pun, Hou In Derek and Wang, Austin T. and Chang, Angel X. and Savva, Manolis},
+          title         = {{SceneMotifCoder: Example-driven Visual Program Learning for Generating 3D Object Arrangements}},
+          year          = {2024},
+          eprint        = {0000.00000},
+          archivePrefix = {arXiv}
+      }
+      </code></pre>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <a class="icon-link" href="">
+          <i class="fas fa-file-pdf"></i>
+        </a>
+        <a class="icon-link" href="" class="external-link" disabled>
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+              The template is borrowed from <a href="https://nerfies.github.io/">Nerfies</a>.
+              Please check out their great work if you find it helpful as well.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
