@@ -6,7 +6,7 @@
 
 <img src="docs/static/images/teaser.webp" alt="teaser" style="width:100%"/>
 
-[Page](https://3dlg-hcvc.github.io/smc/) | [Paper]() | [Data]()
+[Page](https://3dlg-hcvc.github.io/smc/) | [Paper]() | [Data](https://1sfu-my.sharepoint.com/:u:/g/personal/hit_sfu_ca/ES9-av6IP4pBkyCeFqX_-SUByIKkNpo8nOO1-z2C3pfSlg)
 
 ## Setup Environment
 We recommend using `mamba` to manage the environment.
@@ -26,7 +26,7 @@ OPENAI_API_KEY=<YOUR_API_KEY>
 
 ## Download Data
 ### Example Arrangements
-Download the example arrangements [here]() and extract the contents to the root of the project.
+Download the example arrangements [here](https://1sfu-my.sharepoint.com/:u:/g/personal/hit_sfu_ca/ES9-av6IP4pBkyCeFqX_-SUByIKkNpo8nOO1-z2C3pfSlg) and extract the contents to the root of the project.
 
 ### Assets for Retrieval
 SMC retrieves 3D models from the [Habitat Synthetic Scenes Dataset (HSSD)](https://3dlg-hcvc.github.io/hssd/).
