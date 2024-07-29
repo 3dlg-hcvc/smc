@@ -68,3 +68,8 @@ After learning a meta-program, you can use it to generate new arrangements by ru
 python inference.py --desc "a stack of four books"
 ```
 By default, the generated arrangement will be saved under `outputs/`. See `inference.py` for more options.
+
+## Citation
+Please cite our work if you find it helpful:
+```
+```
