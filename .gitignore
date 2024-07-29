@@ -166,3 +166,4 @@ cython_debug/
 hssd-models
 examples
 outputs
+*.zip
