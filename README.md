@@ -6,7 +6,7 @@
 
 <img src="docs/static/images/teaser.webp" alt="teaser" style="width:100%"/>
 
-[Page](https://3dlg-hcvc.github.io/smc/) | [Paper]() | [Data](https://1sfu-my.sharepoint.com/:u:/g/personal/hit_sfu_ca/ES9-av6IP4pBkyCeFqX_-SUByIKkNpo8nOO1-z2C3pfSlg)
+[Page](https://3dlg-hcvc.github.io/smc/) | [Paper]() | [Data](https://github.com/3dlg-hcvc/smc/releases/download/v1.0/examples.zip)
 
 ## Setup Environment
 We recommend using `mamba` to manage the environment.
