@@ -72,4 +72,15 @@ By default, the generated arrangement will be saved under `outputs/`. See `infer
 ## Citation
 Please cite our work if you find it helpful:
 ```
+@article{??????????,
+    author        = {Tam, Hou In Ivan and Pun, Hou In Derek and Wang, Austin T. and Chang, Angel X. and Savva, Manolis},
+    title         = {{SceneMotifCoder: Example-driven Visual Program Learning for Generating 3D Object Arrangements}},
+    year          = {2024},
+    eprint        = {0000.00000},
+    archivePrefix = {arXiv}
+}
 ```
+
+## Acknowledgements
+This work was funded in part by a CIFAR AI Chair, a Canada Research Chair, NSERC Discovery Grant, NSF award #2016532, and enabled by support from WestGrid and Compute Canada.
+We thank Qirui Wu, Jiayi Liu, and Han-Hung Lee for helpful discussions and feedback.
