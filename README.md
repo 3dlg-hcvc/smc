@@ -26,7 +26,7 @@ OPENAI_API_KEY=<YOUR_API_KEY>
 
 ## Download Data
 ### Example Arrangements
-Download the example arrangements [here](https://1sfu-my.sharepoint.com/:u:/g/personal/hit_sfu_ca/ES9-av6IP4pBkyCeFqX_-SUByIKkNpo8nOO1-z2C3pfSlg) and extract the contents to the root of the project.
+Download the example arrangements [here](https://github.com/3dlg-hcvc/smc/releases/download/v1.0/examples.zip) and extract the contents to the root of the project.
 
 ### Assets for Retrieval
 SMC retrieves 3D models from the [Habitat Synthetic Scenes Dataset (HSSD)](https://3dlg-hcvc.github.io/hssd/).
