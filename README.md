@@ -82,5 +82,5 @@ Please cite our work if you find it helpful:
 ```
 
 ## Acknowledgements
-This work was funded in part by a CIFAR AI Chair, a Canada Research Chair, NSERC Discovery Grant, NSF award #2016532, and enabled by support from WestGrid and Compute Canada.
+This work was funded in part by a CIFAR AI Chair, a Canada Research Chair, NSERC Discovery Grant, and enabled by support from WestGrid and the [Digital Research Alliance of Canada](https://alliancecan.ca/).
 We thank Qirui Wu, Jiayi Liu, and Han-Hung Lee for helpful discussions and feedback.
