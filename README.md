@@ -30,12 +30,14 @@ Download the example arrangements [here](https://github.com/3dlg-hcvc/smc/releas
 
 ### Assets for Retrieval
 SMC retrieves 3D models from the [Habitat Synthetic Scenes Dataset (HSSD)](https://3dlg-hcvc.github.io/hssd/).
-To download the dataset, accept the terms and conditions of the dataset on Hugging Face ([here](https://huggingface.co/datasets/hssd/hssd-models)).
-Then, clone the dataset repository (~72GB) at the root of the project:
+To download the dataset, accept the terms and conditions of the dataset on Hugging Face [here](https://huggingface.co/datasets/hssd/hssd-models).
+Then, login to Hugging Face on your machine ([guide](https://huggingface.co/docs/huggingface_hub/en/quick-start#authentication)) and clone the dataset repository (~72GB) at the root of the project:
 ```bash
 cd smc
-git lfs install
+
 huggingface-cli login
+
+git lfs install
 git clone https://huggingface.co/datasets/hssd/hssd-models
 ```
 Lastly, download the asset metadata `.csv` file [here](https://huggingface.co/datasets/hssd/hssd-hab/tree/main/semantics) and place it inside the `hssd-models` directory.
