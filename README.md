@@ -35,6 +35,7 @@ Then, clone the dataset repository (~72GB) at the root of the project:
 ```bash
 cd smc
 git lfs install
+huggingface-cli login
 git clone https://huggingface.co/datasets/hssd/hssd-models
 ```
 Lastly, download the asset metadata `.csv` file [here](https://huggingface.co/datasets/hssd/hssd-hab/tree/main/semantics) and place it inside the `hssd-models` directory.
