@@ -72,6 +72,24 @@ python inference.py --desc "a stack of four books"
 ```
 By default, the generated arrangement will be saved under `outputs/`. See `inference.py` for more options.
 
+## Create Example Arrangements
+You can create your own example arrangements using your favorite 3D modeling software.
+Here we provide a simple guide for using [Blender 3.6 LTS](https://www.blender.org/download/releases/3-6/):
+
+1. Create an empty object that serves as the root node (`world`) of the arrangement.
+2. Add object meshes as children of the world node.
+3. Adjust the transformations of the object meshes to create the desired arrangement.
+4. Add a custom property to each object mesh. Change the property's name to `semantics` and type to `python`.
+5. Set the property's value to specify the object's label. For example, `{'label': 'plate'}`.
+6. Export the world node along with its children as a `.glb` file.
+7. Include custom properties in the export settings by checking the `Custom Properties` option under `Include > Data`. (Default is unchecked).
+8. Make sure to check the `+Y Up` option under `Transform` to ensure the correct orientation. (Default is checked).
+9. Save the file.
+
+Your new arrangement, a `.glb` file, is now ready to be used as an example for learning a meta-program.
+
+<img src="docs/static/images/blender_guide.png" alt="guide to create an example arrangement in Blender" style="width:100%"/>
+
 ## Citation
 Please cite our work if you find it helpful:
 ```
