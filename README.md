@@ -93,11 +93,11 @@ Your new arrangement, a `.glb` file, is now ready to be used as an example for l
 ## Citation
 Please cite our work if you find it helpful:
 ```
-@article{??????????,
+@article{tam2024scenemotifcoder,
     author        = {Tam, Hou In Ivan and Pun, Hou In Derek and Wang, Austin T. and Chang, Angel X. and Savva, Manolis},
     title         = {{SceneMotifCoder: Example-driven Visual Program Learning for Generating 3D Object Arrangements}},
     year          = {2024},
-    eprint        = {0000.00000},
+    eprint        = {2408.02211},
     archivePrefix = {arXiv}
 }
 ```
