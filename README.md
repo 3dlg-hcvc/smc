@@ -4,6 +4,8 @@
 
 [Hou In Ivan Tam](https://iv-t.github.io/), [Hou In Derek Pun](https://houip.github.io/), [Austin T. Wang](https://atwang16.github.io/), [Angel X. Chang](https://angelxuanchang.github.io/), [Manolis Savva](https://msavva.github.io/)
 
+3DV 2025
+
 <img src="docs/static/images/teaser.webp" alt="teaser" style="width:100%"/>
 
 [Page](https://3dlg-hcvc.github.io/smc/) | [Paper](https://arxiv.org/abs/2408.02211) | [Data](https://github.com/3dlg-hcvc/smc/releases/download/v1.0/examples.zip)
