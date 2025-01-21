@@ -4,7 +4,7 @@
 
 [Hou In Ivan Tam](https://iv-t.github.io/), [Hou In Derek Pun](https://houip.github.io/), [Austin T. Wang](https://atwang16.github.io/), [Angel X. Chang](https://angelxuanchang.github.io/), [Manolis Savva](https://msavva.github.io/)
 
-3DV 2025
+3DV 2025 (Oral)
 
 <img src="docs/static/images/teaser.webp" alt="teaser" style="width:100%"/>
 
