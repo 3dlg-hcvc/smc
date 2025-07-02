@@ -44,12 +44,16 @@ class Arrangement:
         # Move the origin object to the origin
         origin_obj.bounding_box.centroid = np.array([0, 0, 0])
     
-    def save(self, file_path: str = "saved_arrangement.glb") -> None:
+    def save(self, file_path: str = "saved_arrangement.glb", minus_mesh_bbox_centroid: bool = False) -> None:
         '''
         Save the arrangement to a .glb file.
 
         Args:
             file_path: string, the file path for saving the arrangement
+            minus_mesh_bbox_centroid: bool, whether to subtract the mesh bounding box centroid
+                                      (this fixes the issue of the arrangement being offseted from the original arrangement
+                                       when saving an arrangement that was loaded from a glb file using the glb_loader;
+                                       this is not needed when the arrangement is created through the inference process)
 
         Returns:
             None
@@ -59,6 +63,10 @@ class Arrangement:
         for obj in self.objs:
             mesh = deepcopy(obj.mesh)
             mesh.apply_transform(obj.bounding_box.no_scale_matrix)
+            
+            if minus_mesh_bbox_centroid:
+                mesh.apply_translation(-obj.mesh.bounding_box.centroid)
+            
             scene.add_geometry(mesh)
         
         scene.export(file_path)

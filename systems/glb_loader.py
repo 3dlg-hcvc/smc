@@ -115,6 +115,9 @@ def _load_mesh(glb_file: gltf.GLTF2, mesh: gltf.Mesh) -> tuple[list, list, list]
     faces = []
 
     for primitive in mesh.primitives:
+        # Track the vertex offset before adding new vertices
+        vertex_offset = len(vertices)
+        
         # Read vertex locations
         if primitive.attributes.POSITION is not None:
             loaded_vertices = _read_buffer(glb_file, primitive.attributes.POSITION)
@@ -129,10 +132,17 @@ def _load_mesh(glb_file: gltf.GLTF2, mesh: gltf.Mesh) -> tuple[list, list, list]
         else:
             raise ValueError(f"No vertex normals found in the glTF file")
 
-        # Read faces
+        # Read faces and adjust indices for accumulated vertices
         if primitive.indices is not None:
             loaded_faces = _read_buffer(glb_file, primitive.indices)
-            faces.extend(loaded_faces)
+            # Adjust face indices by adding the vertex offset
+            for face in loaded_faces:
+                if isinstance(face, tuple):
+                    adjusted_face = tuple(idx + vertex_offset for idx in face)
+                    faces.append(adjusted_face)
+                else:
+                    # Handle single index (should be part of a triangle)
+                    faces.append(face + vertex_offset)
         else:
             raise ValueError(f"No faces found in the glTF file")
     
@@ -207,7 +217,8 @@ def load_glb(file_path: str) -> tuple[gltf.GLTF2, list[Obj]]:
                 main_node_matrix = np.array(main_node.matrix).reshape(4, 4, order="F")
             else:
                 translation = main_node.translation if main_node.translation else [0, 0, 0]
-                rotation = main_node.rotation if main_node.rotation else [1, 0, 0, 0]
+                x, y, z, w = main_node.rotation if main_node.rotation else [0, 0, 0, 1]
+                rotation = [w, x, y, z]
                 scale = main_node.scale if main_node.scale else [1, 1, 1]
                 translation_matrix = trimesh.transformations.translation_matrix(translation)
                 rotation_matrix = trimesh.transformations.quaternion_matrix(rotation)
@@ -230,8 +241,8 @@ def load_glb(file_path: str) -> tuple[gltf.GLTF2, list[Obj]]:
 
             # ----- Bounding box -----
             # Compute the oriented bounding box of the mesh
-            centroid = main_node_mesh.bounding_box_oriented.centroid + main_node_matrix[:3, 3]
-            half_size = main_node_mesh.bounding_box_oriented.extents / 2
+            centroid = main_node_mesh.bounding_box.centroid + main_node_matrix[:3, 3]
+            half_size = main_node_mesh.bounding_box.extents / 2
             main_node_bounding_box = BoundingBox(centroid, half_size, main_node_matrix[:3, :3])
             
             # ----- Obj -----
